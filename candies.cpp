@@ -3,8 +3,7 @@ using namespace std;
 
 int main()
 {
-    int candies[10], kidSize, extraCandies, i, j, maxCandies = 0;
-    bool greatestCandies[10];
+    int candies[10], kidSize, extraCandies, i, maxCandies = 0, greatestCandies[10];
 
     cout << "Enter the size of kids: ";
     cin >> kidSize;
@@ -24,13 +23,13 @@ int main()
 
     for (i = 0; i < kidSize; i++)
     {
-        if (candies[i] + extraCandies >= maxCandies)
+        if ((candies[i] + extraCandies) >= maxCandies)
         {
-            greatestCandies[i] = true;
+            greatestCandies[i] = 1;
         }
         else
         {
-            greatestCandies[i] = false;
+            greatestCandies[i] = 0;
         }
     }
 
