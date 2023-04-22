@@ -1,5 +1,24 @@
 #include <stdio.h>
 #include <string.h>
+int romanToInteger(char *s);
+
+int main()
+{
+  char romanNumber[50];
+  printf("Enter the roman number: ");
+  scanf("%s", romanNumber);
+  strupr(romanNumber);
+  int result = romanToInteger(romanNumber);
+  if (result == -1)
+  {
+    printf("Invalid Roman Number\n");
+  }
+  else
+  {
+    printf("%s : %d\n", romanNumber, result);
+  }
+  return 0;
+}
 
 int romanToInteger(char *s)
 {
@@ -57,22 +76,4 @@ int romanToInteger(char *s)
     prevValue = value;
   }
   return integer;
-}
-
-int main()
-{
-  char romanNumber[50];
-  printf("Enter the roman number: ");
-  scanf("%s", romanNumber);
-  strupr(romanNumber);
-  int result = romanToInteger(romanNumber);
-  if (result == -1)
-  {
-    printf("Invalid Roman Number\n");
-  }
-  else
-  {
-    printf("%s : %d\n", romanNumber, result);
-  }
-  return 0;
 }
