@@ -1,76 +1,73 @@
 #include <stdio.h>
-#define n 100
+#define MAX 100
 
 int main()
 {
-    int a[n], b[n], c[n * 2];
-    int n1, n2, i, r, mo, j, k, tmp;
+    int firstArr[MAX], secondArr[MAX], mergedArr[MAX * 2];
+    int firstSize, secondSize, i, j, k, result, tmp;
+    float median;
+    printf("size of first array: ");
+    scanf("%d", &firstSize);
 
-    printf("size of first array: ", n);
-    scanf("%d", &n1);
-
-    printf("Enter elements of first array: ");
-    for (i = 0; i < n1; i++)
+    printf("Enter elements of first array:\n");
+    for (i = 0; i < firstSize; i++)
     {
-        scanf("%d", &a[i]);
+        scanf("%d", &firstArr[i]);
     }
 
-    printf("size of second array: ", n);
-    scanf("%d", &n2);
+    printf("size of second array: ");
+    scanf("%d", &secondSize);
 
-    printf("Enter elements of second array: ");
-    for (i = 0; i < n2; i++)
+    printf("Enter elements of second array:\n");
+    for (i = 0; i < secondSize; i++)
     {
-        scanf("%d", &b[i]);
+        scanf("%d", &secondArr[i]);
     }
 
-    // Merge elements alternatively
+    // Merging both arrays
     i = j = k = 0;
-    while (i < n1 && j < n2)
+    while (i < firstSize && j < secondSize)
     {
-        c[k++] = a[i++];
-        c[k++] = b[j++];
+        mergedArr[k++] = firstArr[i++];
+        mergedArr[k++] = secondArr[j++];
     }
 
-    // Copy remaining elements of a, if any
-    while (i < n1)
+    while (i < firstSize)
     {
-        c[k++] = a[i++];
+        mergedArr[k++] = firstArr[i++];
     }
 
-    // Copy remaining elements of b, if any
-    while (j < n2)
+    while (j < secondSize)
     {
-        c[k++] = b[j++];
+        mergedArr[k++] = secondArr[j++];
     }
 
+    // sorting the merged array
     for (i = 0; i < k - 1; i++)
     {
         for (j = 0; j < k - i - 1; j++)
         {
-            if (c[j] > c[j + 1])
+            if (mergedArr[j] > mergedArr[j + 1])
             {
-                tmp = c[j];
-                c[j] = c[j + 1];
-                c[j + 1] = tmp;
+                tmp = mergedArr[j];
+                mergedArr[j] = mergedArr[j + 1];
+                mergedArr[j + 1] = tmp;
             }
         }
     }
 
-    for (i = 0; i < k; i++)
+    // finding the median
+    if ((firstSize + secondSize) % 2 == 0)
     {
-        printf("%d\n", c[i]);
-    }
-    if ((n1 + n2) % 2 == 0)
-    {
-        r = (n1 + n2) / 2;
-        mo = (c[r] + c[r - 1]) / 2;
-        printf("\nMedian=%d", mo);
+        result = (firstSize + secondSize) / 2;
+        median = (float)(mergedArr[result] + mergedArr[result - 1]) / 2;
+        printf("Median: %f", median);
     }
     else
     {
-        r = (n1 + n2) / 2;
-        printf("\nMedian=%d", c[r]);
+        result = (firstSize + secondSize) / 2;
+        median = mergedArr[result];
+        printf("Median: %f", median);
     }
 
     return 0;
