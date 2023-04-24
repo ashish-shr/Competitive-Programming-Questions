@@ -27,7 +27,7 @@ int main()
       strcpy(tmpString, subString);
 
       // checking for longest palindromic substring
-      if (count > max && strcmp(strrev(tmpString), subString) == 0)
+      if (count > max && strcmp(strrev(tmpString), subString) == 0 && count != 1)
       {
         max = count;
         strcpy(palindromic, subString);
